@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "clearFilters",
   "position": {
-    "x": 1756,
+    "x": 1731,
     "y": 62,
     "z": 13000,
     "height": 36,
-    "width": 150,
+    "width": 175,
     "tabOrder": 13000
   },
   "visual": {
@@ -59,7 +59,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },

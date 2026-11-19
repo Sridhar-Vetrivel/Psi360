@@ -33,8 +33,8 @@
         "title": [
           {
             "show": true,
-            "fontFamily": "DIN",
-            "fontSize": 14,
+            "fontFamily": "wf_standard-font, helvetica, arial, sans-serif",
+            "fontSize": 17,
             "bold": true,
             "fontColor": {
               "solid": {

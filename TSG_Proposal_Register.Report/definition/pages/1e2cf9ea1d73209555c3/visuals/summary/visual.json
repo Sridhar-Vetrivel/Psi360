@@ -3,10 +3,10 @@
   "name": "summary",
   "position": {
     "x": 122,
-    "y": 66,
+    "y": 72,
     "z": 4000,
-    "height": 40,
-    "width": 640,
+    "height": 38,
+    "width": 660,
     "tabOrder": 4000
   },
   "visual": {

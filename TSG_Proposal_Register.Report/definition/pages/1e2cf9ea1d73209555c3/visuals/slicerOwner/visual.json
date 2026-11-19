@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "slicerOwner",
   "position": {
-    "x": 1614,
+    "x": 1592,
     "y": 30,
     "z": 11000,
     "height": 66,
-    "width": 136,
+    "width": 133,
     "tabOrder": 11000
   },
   "visual": {
@@ -112,7 +112,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -168,7 +168,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },

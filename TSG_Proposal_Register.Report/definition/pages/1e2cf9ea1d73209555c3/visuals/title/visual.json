@@ -3,10 +3,10 @@
   "name": "title",
   "position": {
     "x": 122,
-    "y": 16,
+    "y": 10,
     "z": 3000,
-    "height": 50,
-    "width": 640,
+    "height": 60,
+    "width": 660,
     "tabOrder": 3000
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "PROPOSAL REGISTER DASHBOARD",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "26pt",
+                      "fontSize": "34pt",
                       "color": "#FFFFFF",
                       "fontFamily": "DIN"
                     }
