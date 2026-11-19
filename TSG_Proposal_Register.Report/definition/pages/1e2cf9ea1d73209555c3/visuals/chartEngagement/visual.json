@@ -618,7 +618,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Existing (EBD) vs New Business (NBD)'"
+                  "Value": "'EBD vs NBD'"
                 }
               }
             },
