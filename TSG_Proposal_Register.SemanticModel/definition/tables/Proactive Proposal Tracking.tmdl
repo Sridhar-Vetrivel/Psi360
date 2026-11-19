@@ -1,0 +1,129 @@
+table 'Proactive Proposal Tracking'
+	lineageTag: c425f1ac-fbeb-41d1-9e02-f8205a2f935d
+
+	column 'MAC No.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 37890f33-3ca2-4135-86af-484a1fcd639e
+		summarizeBy: sum
+		sourceColumn: MAC No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MAC Name'
+		dataType: string
+		lineageTag: e8154e99-f2d3-4c7c-a0b0-dffdd6e8ec23
+		summarizeBy: none
+		sourceColumn: MAC Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: b9b2bdc3-ab6d-46ef-8f75-25fca02e5f91
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Details'
+		dataType: string
+		lineageTag: 503061d5-1494-4bc8-877e-ef882c23536a
+		summarizeBy: none
+		sourceColumn: Opportunity Details
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: 7023db5b-8990-4b1e-98ed-a6b9c5e2088d
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 05f59bfa-f00e-4044-9b3d-d31594c3c1da
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engagement
+		dataType: string
+		lineageTag: 66e4de32-e985-48ac-bc2d-f929cf560033
+		summarizeBy: none
+		sourceColumn: Engagement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Identified By'
+		dataType: string
+		lineageTag: d8862b92-83e1-49e5-ae3f-8b66cdb9e11e
+		summarizeBy: none
+		sourceColumn: Identified By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c3dbc9f2-6348-4abe-804c-f4b5e3f25578
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage
+		dataType: string
+		lineageTag: 93d97191-ec29-4fc2-a742-574d6b57d76b
+		summarizeBy: none
+		sourceColumn: Stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Owner'
+		dataType: string
+		lineageTag: 0a69b37a-eb31-41d8-b834-e5a4f94eede9
+		summarizeBy: none
+		sourceColumn: Opportunity Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TAC Associate'
+		dataType: string
+		lineageTag: 94e3e476-5c5f-441a-9ce4-f405e1309159
+		summarizeBy: none
+		sourceColumn: TAC Associate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Next Action / Support Needed'
+		dataType: string
+		lineageTag: 20e08931-3624-44ee-b5dc-d3c27aa87fbc
+		summarizeBy: none
+		sourceColumn: Next Action / Support Needed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reusability
+		dataType: string
+		lineageTag: bd1399e5-b7f7-4ddd-acfe-a37e86e2ce11
+		summarizeBy: none
+		sourceColumn: Reusability
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Proactive Proposal Tracking' = m
+		mode: import
+		source =
+				let
+				  Source = Excel.Workbook(Web.Contents("https://psiog0.sharepoint.com/sites/BEACON/Knowledge Hub/TSG/TSG_Proposal_Register.xlsx"), null, true),
+				  #"Navigation 1" = Source{[Item = "Proactive Proposal Tracking", Kind = "Sheet"]}[Data],
+				  #"Promoted headers" = Table.PromoteHeaders(#"Navigation 1", [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"MAC No.", Int64.Type}, {"MAC Name", type text}, {"Account Name", type text}, {"Opportunity Details", type text}, {"Priority", type text}, {"Type", type text}, {"Engagement", type text}, {"Identified By", type text}, {"Status", type text}, {"Stage", type text}, {"Opportunity Owner", type text}, {"TAC Associate", type text}, {"Next Action / Support Needed", type text}, {"Reusability", type text}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

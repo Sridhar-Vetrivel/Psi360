@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TSG_Proposal_Register"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "08a4173a-22c2-430b-b934-fb76b08e6246"
+  }
+}
