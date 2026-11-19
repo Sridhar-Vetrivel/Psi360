@@ -9,11 +9,13 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Proactive Proposal Tracking"]
+annotation PBI_QueryOrder = ["Proactive Proposal Tracking","Identified By Source","Last Refresh"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table 'Proactive Proposal Tracking'
+ref table 'Identified By Source'
+ref table 'Last Refresh'
 
 ref cultureInfo en-US
 

@@ -1,0 +1,41 @@
+/// One row per opportunity per source in 'Identified By'. Joint entries such as "BT, BD, MAC" are split, so each source counts once.
+table 'Identified By Source'
+	lineageTag: 6edbade9-a3dc-42eb-8e97-6fb5bb5313ca
+
+	column Row
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 275d0500-3354-4f27-b880-e97cee6590cb
+		summarizeBy: none
+		sourceColumn: Row
+
+		annotation SummarizationSetBy = User
+
+	column Source
+		dataType: string
+		lineageTag: 0192ed0f-d622-47aa-a92c-93bceeb87fad
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Identified By Source' = m
+		mode: import
+		source =
+				let
+				  Source = #"Proactive Proposal Tracking",
+				  #"Kept columns" = Table.SelectColumns(Source, {"Row", "Identified By"}),
+				  #"Split sources" = Table.AddColumn(#"Kept columns", "Source", each
+					  let
+						parts = List.Distinct(List.Select(List.Transform(Text.Split(if [Identified By] = null then "" else [Identified By], ","), Text.Trim), each _ <> ""))
+					  in
+						if List.IsEmpty(parts) then {"Not set"} else parts),
+				  #"Removed original" = Table.RemoveColumns(#"Split sources", {"Identified By"}),
+				  #"Expanded sources" = Table.ExpandListColumn(#"Removed original", "Source"),
+				  #"Changed type" = Table.TransformColumnTypes(#"Expanded sources", {{"Row", Int64.Type}, {"Source", type text}})
+				in
+				  #"Changed type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,170 @@
+{
+  "name": "Psiog",
+  "dataColors": [
+    "#118DFF",
+    "#12239E",
+    "#E3A21A",
+    "#1AAB40",
+    "#A19F9D",
+    "#6B007B",
+    "#E66C37",
+    "#197278",
+    "#D64550",
+    "#744EC2"
+  ],
+  "foreground": "#252423",
+  "background": "#FFFFFF",
+  "tableAccent": "#12239E",
+  "textClasses": {
+    "title": {
+      "fontFace": "DIN",
+      "fontSize": 14,
+      "color": "#252423"
+    },
+    "callout": {
+      "fontFace": "DIN",
+      "fontSize": 34,
+      "color": "#252423"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "DIN",
+            "fontSize": 14,
+            "bold": true,
+            "fontColor": {
+              "solid": {
+                "color": "#252423"
+              }
+            },
+            "alignment": "left"
+          }
+        ],
+        "divider": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#12239E"
+              }
+            },
+            "width": 4,
+            "ignorePadding": true
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#12239E"
+              }
+            },
+            "radius": 4,
+            "width": 1
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#CCCCCC"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "textbox": {
+      "*": {
+        "divider": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "image": {
+      "*": {
+        "divider": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "background": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "actionButton": {
+      "*": {
+        "divider": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "divider": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+/// Single-row table holding the time of the last data refresh (shown in the report footer).
+table 'Last Refresh'
+	lineageTag: 20cd5b0f-4e3d-467e-8200-65d2524356a6
+
+	column 'Last Refreshed'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: e901fea6-55a6-4772-887c-2af34e4d31cb
+		summarizeBy: none
+		sourceColumn: Last Refreshed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last Refresh' = m
+		mode: import
+		source =
+				let
+				  Source = #table(type table [#"Last Refreshed" = datetime], {{DateTime.LocalNow()}})
+				in
+				  Source
+
+	annotation PBI_ResultType = Table
+

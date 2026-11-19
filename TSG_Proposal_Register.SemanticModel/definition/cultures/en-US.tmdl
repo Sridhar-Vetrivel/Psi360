@@ -1,2 +1,137 @@
 cultureInfo en-US
 
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "proactive_proposal_tracking.account_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "Account Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Account": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "proactive_proposal_tracking.opportunity_details": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "Opportunity Details"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Opportunity": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "proactive_proposal_tracking.stage": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "Stage"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Stage / Latest Update": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "proactive_proposal_tracking.next_action___support_needed": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "Next Action / Support Needed"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Next Action / Support Needed": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "proactive_proposal_tracking.opportunity_owner": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "Opportunity Owner"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Owner": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "proactive_proposal_tracking.mac_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Proactive Proposal Tracking",
+			          "ConceptualProperty": "MAC Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "MAC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

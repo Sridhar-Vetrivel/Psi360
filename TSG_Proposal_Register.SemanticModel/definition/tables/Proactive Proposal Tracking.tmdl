@@ -1,14 +1,105 @@
 table 'Proactive Proposal Tracking'
 	lineageTag: c425f1ac-fbeb-41d1-9e02-f8205a2f935d
 
+	/// Number of opportunities in the current filter context (blank when none). Used by the charts.
+	measure Opportunities = COUNTROWS('Proactive Proposal Tracking')
+		formatString: #,0
+		displayFolder: Counts
+		lineageTag: 30ef16ea-4324-4c76-9f54-a4e52fa5a629
+
+	measure 'Total Opportunities' = [Opportunities] + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 07526ebd-62f3-445d-8baa-6b04ac0b6c6d
+
+	/// Status is In Progress or Proposed.
+	measure 'Active Pipeline' =
+			CALCULATE (
+				[Opportunities],
+				KEEPFILTERS ( 'Proactive Proposal Tracking'[Status] IN { "In Progress", "Proposed" } )
+			) + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 88eb5600-8bc8-448d-838d-dce6a6d362c5
+
+	measure 'High Priority Active' =
+			CALCULATE (
+				[Opportunities],
+				KEEPFILTERS ( 'Proactive Proposal Tracking'[Status] IN { "In Progress", "Proposed" } ),
+				KEEPFILTERS ( 'Proactive Proposal Tracking'[Priority] = "High" )
+			) + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 9e19e5e5-225f-4590-9652-29bc3011000e
+
+	measure Won = CALCULATE ( [Opportunities], KEEPFILTERS ( 'Proactive Proposal Tracking'[Status] = "Won" ) ) + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: cc081f27-0930-4d9f-92ad-3a507b237bb9
+
+	measure 'On Hold' = CALCULATE ( [Opportunities], KEEPFILTERS ( 'Proactive Proposal Tracking'[Status] = "On Hold" ) ) + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 9a38652c-0c54-4df2-b82b-b08f3d1f0a4e
+
+	measure Closed = CALCULATE ( [Opportunities], KEEPFILTERS ( 'Proactive Proposal Tracking'[Status] = "Closed" ) ) + 0
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: a9e6bc94-fa4f-4551-bbd2-ae416cc050ef
+
+	/// Won / (Won + Closed). On Hold is excluded because it is not decided yet. Shows a dash when nothing is decided.
+	measure 'Win Rate' =
+			VAR _won = [Won]
+			VAR _closed = [Closed]
+			RETURN
+				IF ( _won + _closed = 0, "—", FORMAT ( DIVIDE ( _won, _won + _closed ), "0%" ) )
+		displayFolder: KPIs
+		lineageTag: b818e664-48b1-4829-b7f3-730a9074f833
+
+	measure 'Summary Text' =
+			"Of " & FORMAT ( [Total Opportunities], "#,0" ) & " opportunities, "
+				& FORMAT ( [Active Pipeline], "#,0" ) & " are active (In Progress or Proposed), "
+				& FORMAT ( [Won], "#,0" ) & " are won and "
+				& FORMAT ( [On Hold], "#,0" ) & " are on hold."
+		displayFolder: Labels
+		lineageTag: f060bf72-204c-41e6-85e7-83d7dfc8f0f9
+
+	measure Greeting =
+			VAR _upn = USERPRINCIPALNAME ()
+			VAR _at = SEARCH ( "@", _upn, 1, 0 )
+			VAR _name = IF ( _at > 0, LEFT ( _upn, _at - 1 ), _upn )
+			VAR _slash = SEARCH ( "\", _name, 1, 0 )
+			RETURN
+				"Hi, " & IF ( _slash > 0, MID ( _name, _slash + 1, 200 ), _name )
+		displayFolder: Labels
+		lineageTag: cb0aa44c-64be-4c64-b3bc-eb608c24ecd0
+
+	measure 'Last Refreshed Text' = "Last Refreshed On " & FORMAT ( MAX ( 'Last Refresh'[Last Refreshed] ), "yyyy-mm-dd HH:mm" )
+		displayFolder: Labels
+		lineageTag: 395c9d79-fdfc-4bc7-9ff2-f38a4cb545fc
+
+	/// Hex colour per Status, used for conditional formatting in the opportunity list.
+	measure 'Status Colour' =
+			SWITCH (
+				SELECTEDVALUE ( 'Proactive Proposal Tracking'[Status] ),
+				"In Progress", "#118DFF",
+				"Proposed", "#12239E",
+				"On Hold", "#C98A00",
+				"Won", "#1AAB40",
+				"Closed", "#8A8886",
+				"#605E5C"
+			)
+		displayFolder: Labels
+		lineageTag: 2952fe40-172b-4017-9f47-5bd911fa464f
+
 	column 'MAC No.'
 		dataType: int64
 		formatString: 0
 		lineageTag: 37890f33-3ca2-4135-86af-484a1fcd639e
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: MAC No.
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column 'MAC Name'
 		dataType: string
@@ -39,6 +130,7 @@ table 'Proactive Proposal Tracking'
 		lineageTag: 7023db5b-8990-4b1e-98ed-a6b9c5e2088d
 		summarizeBy: none
 		sourceColumn: Priority
+		sortByColumn: 'Priority Order'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -47,6 +139,7 @@ table 'Proactive Proposal Tracking'
 		lineageTag: 05f59bfa-f00e-4044-9b3d-d31594c3c1da
 		summarizeBy: none
 		sourceColumn: Type
+		sortByColumn: 'Type Order'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -55,6 +148,7 @@ table 'Proactive Proposal Tracking'
 		lineageTag: 66e4de32-e985-48ac-bc2d-f929cf560033
 		summarizeBy: none
 		sourceColumn: Engagement
+		sortByColumn: 'Engagement Order'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -71,6 +165,7 @@ table 'Proactive Proposal Tracking'
 		lineageTag: c3dbc9f2-6348-4abe-804c-f4b5e3f25578
 		summarizeBy: none
 		sourceColumn: Status
+		sortByColumn: 'Status Order'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -114,6 +209,56 @@ table 'Proactive Proposal Tracking'
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Row number of the opportunity in the Excel register (header is row 1).
+	column Row
+		dataType: int64
+		formatString: 0
+		lineageTag: 902ae517-0f94-445c-9ce2-c0461a555f38
+		summarizeBy: none
+		sourceColumn: Row
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 21b8fa3e-ac38-45a0-a967-ddd1c441fd3d
+		summarizeBy: none
+		sourceColumn: Status Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Priority Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 813e53e4-ac78-472f-a7ad-c691be74db97
+		summarizeBy: none
+		sourceColumn: Priority Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Type Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e2a73c4a-38a5-488f-a2db-a7fb31b74aa5
+		summarizeBy: none
+		sourceColumn: Type Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Engagement Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 893c85fd-7062-412e-bfd2-379c00a3ca4a
+		summarizeBy: none
+		sourceColumn: Engagement Order
+
+		annotation SummarizationSetBy = User
+
 	partition 'Proactive Proposal Tracking' = m
 		mode: import
 		source =
@@ -121,9 +266,29 @@ table 'Proactive Proposal Tracking'
 				  Source = Excel.Workbook(Web.Contents("https://psiog0.sharepoint.com/sites/BEACON/Knowledge Hub/TSG/TSG_Proposal_Register.xlsx"), null, true),
 				  #"Navigation 1" = Source{[Item = "Proactive Proposal Tracking", Kind = "Sheet"]}[Data],
 				  #"Promoted headers" = Table.PromoteHeaders(#"Navigation 1", [PromoteAllScalars = true]),
-				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"MAC No.", Int64.Type}, {"MAC Name", type text}, {"Account Name", type text}, {"Opportunity Details", type text}, {"Priority", type text}, {"Type", type text}, {"Engagement", type text}, {"Identified By", type text}, {"Status", type text}, {"Stage", type text}, {"Opportunity Owner", type text}, {"TAC Associate", type text}, {"Next Action / Support Needed", type text}, {"Reusability", type text}}, "en-US")
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"MAC No.", Int64.Type}, {"MAC Name", type text}, {"Account Name", type text}, {"Opportunity Details", type text}, {"Priority", type text}, {"Type", type text}, {"Engagement", type text}, {"Identified By", type text}, {"Status", type text}, {"Stage", type text}, {"Opportunity Owner", type text}, {"TAC Associate", type text}, {"Next Action / Support Needed", type text}, {"Reusability", type text}}, "en-US"),
+				  // Excel row number: header is row 1, so the first data row is row 2
+				  #"Added Row" = Table.AddIndexColumn(#"Changed column type", "Row", 2, 1, Int64.Type),
+				  TextColumns = {"MAC Name", "Account Name", "Opportunity Details", "Priority", "Type", "Engagement", "Identified By", "Status", "Stage", "Opportunity Owner", "TAC Associate", "Next Action / Support Needed", "Reusability"},
+				  // Trim spaces / line breaks and turn empty strings into null
+				  #"Cleaned text" = Table.TransformColumns(#"Added Row", List.Transform(TextColumns, (c) => {c, each let t = if _ = null then null else Text.Trim(Text.Clean(Text.From(_))) in if t = "" then null else t, type nullable text})),
+				  // Drop rows where every text column is empty
+				  #"Removed empty rows" = Table.SelectRows(#"Cleaned text", each List.NonNullCount(Record.ToList(Record.SelectFields(_, TextColumns))) > 0),
+				  // Consistent casing for the categories; blanks become "Not set"
+				  #"Normalised categories" = Table.TransformColumns(#"Removed empty rows", {
+					  {"Status", each if _ = null then "Not set" else Text.Proper(_), type text},
+					  {"Priority", each if _ = null then "Not set" else Text.Proper(_), type text},
+					  {"Type", each if _ = null then "Not set" else Text.Proper(_), type text},
+					  {"Engagement", each if _ = null then "Not set" else Text.Upper(_), type text},
+					  {"Opportunity Details", each if _ = null then "Not entered" else _, type text}
+				  }),
+				  OrderOf = (value as text, order as list) as number => let p = List.PositionOf(order, value) in if p < 0 then 99 else p + 1,
+				  #"Added Status Order" = Table.AddColumn(#"Normalised categories", "Status Order", each OrderOf([Status], {"In Progress", "Proposed", "On Hold", "Won", "Closed"}), Int64.Type),
+				  #"Added Priority Order" = Table.AddColumn(#"Added Status Order", "Priority Order", each OrderOf([Priority], {"High", "Medium", "Low"}), Int64.Type),
+				  #"Added Type Order" = Table.AddColumn(#"Added Priority Order", "Type Order", each OrderOf([Type], {"Proactive", "New Requirement"}), Int64.Type),
+				  #"Added Engagement Order" = Table.AddColumn(#"Added Type Order", "Engagement Order", each OrderOf([Engagement], {"EBD", "NBD"}), Int64.Type)
 				in
-				  #"Changed column type"
+				  #"Added Engagement Order"
 
 	annotation PBI_ResultType = Table
 

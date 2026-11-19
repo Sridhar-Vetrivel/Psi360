@@ -1,0 +1,5 @@
+relationship 9047b2e9-262e-45ee-9c97-99ad8e479b15
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Identified By Source'.Row
+	toColumn: 'Proactive Proposal Tracking'.Row
+
