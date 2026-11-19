@@ -220,32 +220,6 @@
               }
             },
             "direction": "Ascending"
-          },
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Proactive Proposal Tracking"
-                  }
-                },
-                "Property": "Priority"
-              }
-            },
-            "direction": "Ascending"
-          },
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Proactive Proposal Tracking"
-                  }
-                },
-                "Property": "Account Name"
-              }
-            },
-            "direction": "Ascending"
           }
         ]
       }
