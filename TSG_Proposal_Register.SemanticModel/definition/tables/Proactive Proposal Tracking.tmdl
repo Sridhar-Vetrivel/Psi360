@@ -82,9 +82,9 @@ table 'Proactive Proposal Tracking'
 	measure 'Status Colour' =
 			SWITCH (
 				SELECTEDVALUE ( 'Proactive Proposal Tracking'[Status] ),
-				"In Progress", "#118DFF",
-				"Proposed", "#12239E",
-				"On Hold", "#C98A00",
+				"In Progress", "#1E8C91",
+				"Proposed", "#0E6B70",
+				"On Hold", "#8A8500",
 				"Won", "#1AAB40",
 				"Closed", "#8A8886",
 				"#605E5C"

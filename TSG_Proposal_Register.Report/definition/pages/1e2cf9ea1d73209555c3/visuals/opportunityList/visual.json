@@ -270,7 +270,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#12239E'"
+                      "Value": "'#0E6B70'"
                     }
                   }
                 }
@@ -369,7 +369,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EEF0FA'"
+                      "Value": "'#EAF7F8'"
                     }
                   }
                 }
@@ -430,7 +430,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#D9DCEF'"
+                      "Value": "'#D7EEF0'"
                     }
                   }
                 }
@@ -685,7 +685,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#12239E'"
+                      "Value": "'#0E6B70'"
                     }
                   }
                 }
@@ -833,46 +833,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Row = row number in the Excel register · sorted by Status, Priority, Account'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#605E5C'"
-                    }
-                  }
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "false"
                 }
               }
             }
@@ -894,7 +855,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#12239E'"
+                      "Value": "'#0E6B70'"
                     }
                   }
                 }

@@ -1,9 +1,9 @@
 {
   "name": "Psiog",
   "dataColors": [
-    "#118DFF",
-    "#12239E",
-    "#E3A21A",
+    "#2DB6BC",
+    "#0E6B70",
+    "#DCD501",
     "#1AAB40",
     "#A19F9D",
     "#6B007B",
@@ -14,7 +14,7 @@
   ],
   "foreground": "#252423",
   "background": "#FFFFFF",
-  "tableAccent": "#12239E",
+  "tableAccent": "#0E6B70",
   "textClasses": {
     "title": {
       "fontFace": "DIN",
@@ -49,7 +49,7 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#12239E"
+                "color": "#0E6B70"
               }
             },
             "width": 4,
@@ -61,7 +61,7 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#12239E"
+                "color": "#0E6B70"
               }
             },
             "radius": 4,

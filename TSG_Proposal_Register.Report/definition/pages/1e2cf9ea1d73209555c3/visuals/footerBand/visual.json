@@ -19,14 +19,15 @@
               {
                 "textRuns": [
                   {
-                    "value": "Active = In Progress + Proposed   ·   Win rate = Won ÷ (Won + Closed); On Hold is left out   ·   Identified By: joint entries count once per source, so that chart can add up to more than the total   ·   All visuals follow the slicers",
+                    "value": " ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
-                      "color": "#ffffff"
+                      "color": "#FFFFFF",
+                      "fontFamily": "Segoe UI"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }
@@ -49,7 +50,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#12239E'"
+                      "Value": "'#0E6B70'"
                     }
                   }
                 }
